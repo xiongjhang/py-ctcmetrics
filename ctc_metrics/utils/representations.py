@@ -65,13 +65,12 @@ def match(
         comp_path: Path to the computed mask.
 
     Returns:
-        A tuple of five numpy arrays. The first array contains the existing
-        labels in the reference mask. The second array contains the
-        existing labels in the computed mask. The third array contains the
-        matched labels in the referenced mask. The fourth array contains
-        the corresponding matched labels in the computed mask. The fifth
-        array contains the intersection over union (IoU) for each matched
-        label pair.
+        A tuple of five numpy arrays. 
+        - The first array contains the existing labels in the reference mask. 
+        - The second array contains the existing labels in the computed mask. 
+        - The third array contains the matched labels in the referenced mask.
+        - The fourth array contains the corresponding matched labels in the computed mask. 
+        - The fiftharray contains the intersection over union (IoU) for each matched label pair.
     """
     # Read the input data
     if comp_path is None:
