@@ -167,6 +167,7 @@ def visualize(
             ids_to_show=ids_to_show,
             opacity=opacity,
             trajectories=trajectory_history if show_trajectories else None,
+            trajectory_thickness=trajectory_thickness
         )
         
         if border_width > 0:
@@ -404,7 +405,7 @@ def main():
     # Yokogawa dataset
     img = r'D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01'
     res = r'D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01_GT\_RES'
-    viz_dir = r'D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_VIS'
+    viz_dir = r'D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01_VIS'
 
     # LLS dataset
 
@@ -417,7 +418,8 @@ def main():
         show_labels=False,
         show_parents=False,
         show_trajectories=True,
-        trajectory_length=2,
+        trajectory_length=150,
+        trajectory_thickness=8,
         ids_to_show=None,
         start_frame=0,
         framerate=10,
