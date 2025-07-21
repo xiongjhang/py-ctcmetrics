@@ -129,7 +129,7 @@ def visualize(
         p1, p99 = np.percentile(img, (1, 99))
         img = np.clip((img - p1) / max(p99 - p1, 1e-5) * 255, 0, 255).astype(np.uint8)
         img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR)
-        res_img = tiff.imread(res_path)
+        res_img = tiff.imread(res_path).squeeze()
         
         # Update trajectory history
         if show_trajectories:
@@ -394,28 +394,42 @@ def main():
     """
     Main function that is called when the script is executed.
     """
-    args = parse_args()
+    # args = parse_args()
+
+    # Test dataset
+    img = r'D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01'
+    res = r'D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_GT\TRA'
+    viz_dir = r'D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_VIS'
+
+    # Yokogawa dataset
+    img = r'D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01'
+    res = r'D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01_GT\_RES'
+    viz_dir = r'D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_VIS'
+
+    # LLS dataset
+
     visualize(
-        args.img,
-        args.res,
-        viz_dir=args.viz,
-        video_name=args.video_name,
-        border_width=args.border_width,
-        show_labels=args.show_no_labels,
-        show_parents=args.show_no_parents,
-        show_trajectories=args.show_no_trajectories,
-        trajectory_length=args.trajectory_length,
-        ids_to_show=args.ids_to_show,
-        start_frame=args.start_frame,
-        framerate=args.framerate,
-        opacity=args.opacity,
+        img,
+        res,
+        viz_dir,
+        video_name='01_video.mp4',
+        border_width=None,
+        show_labels=False,
+        show_parents=False,
+        show_trajectories=True,
+        trajectory_length=2,
+        ids_to_show=None,
+        start_frame=0,
+        framerate=10,
+        opacity=0.5,
     )
 
 
 if __name__ == "__main__":
     main()
 
-
+# Test dataset
 # python D:\2025-proj\py-ctcmetrics\ctc_metrics\scripts\test_vis.py --img D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01 --res D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_GT\TRA --viz D:\dataset\cell-benchmark\Fluo-N2DH-SIM+\01_VIS --video-name 01_video.mp4 --show-no-labels --trajectory-thickness 8
 
+# Yokogawa dataset
 # python D:\2025-proj\py-ctcmetrics\ctc_metrics\scripts\test_vis.py --img D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01 --res D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01_GT\_RES --viz D:\dataset\cell-data\vis_xiangyu\240129D0_F007\01_VIS --video-name 01_video.mp4 --show-no-labels --trajectory-thickness 8
